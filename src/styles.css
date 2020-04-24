@@ -1,0 +1,19 @@
+/* You can add global styles to this file, and also import other style files */
+
+
+
+@media only screen and (max-width: 768px) {
+.loading{
+    margin-top:50%;
+    margin-left:40%;
+    z-index: 100;
+}
+}
+
+@media only screen and (min-width: 768px) {
+.loading{
+    margin-top:25%;
+    margin-left:45%;
+    z-index: 100;
+}
+}

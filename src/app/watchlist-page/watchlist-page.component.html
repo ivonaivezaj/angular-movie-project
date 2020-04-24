@@ -1,0 +1,18 @@
+<main>
+    <div *ngIf="movies">
+        <h4 class="fav"> Favorites <span (click)="clearFavorites()" class="btn clear-all">clear <span
+            class="remove"></span></span></h4>
+        <section>
+            <div *ngFor="let movie of movies"
+                class="movielist">
+                    <a routerLink="/detail/{{movie.id}}">
+                    <img src="https://image.tmdb.org/t/p/w500/{{movie.poster_path}}" alt="poster" class="image" />
+                    </a>
+                    <div class="movie-list-description">
+                        <span> released: {{ movie.release_date | date: "y"}} | votes: {{movie.vote_count}}</span>  
+                        <span (click) ="removeFromFavorites(movie.id)" class="remove-x"> X</span>
+                    </div>
+            </div>
+        </section>
+    </div>
+</main>

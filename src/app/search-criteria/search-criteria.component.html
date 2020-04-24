@@ -1,0 +1,54 @@
+
+        <div class="search-bar-container">
+
+          <div class="searchtitle">MOVIE SEARCH</div>
+          
+          <form method="get" action="/Search">
+            <input type="text" name="filmTitle" placeholder="TITLE OF FILM" class="sidebar-search-title">
+  
+        </form>
+
+            <form method="get" action="/Search">
+              <input type="text" name="filmYear" placeholder="YEAR" class="sidebar-search-year">
+              <select name="filmRating" class="sidebar-search-rating">
+                  <option id="phRating" selected="selected">RATING</option>
+                  <option value="G">G</option>
+                  <option value="PG">PG</option>
+                  <option value="PG-13">PG-13</option>
+                  <option value="R">R</option>
+                  <option value="NC-17">NC-17</option>
+                  <option value="X">X</option>
+                  <option value="GP">GP</option>
+                  <option value="M">M</option>
+                  <option value="M/PG">M/PG</option>
+              </select>
+          </form>
+
+          <label for="Genre">Genre:</label>
+
+          <select id="genre">
+            <option id="genre" selected="selected">Any</option>
+            <option value="action">Action</option>
+            <option value="adventure">Adventure</option>
+            <option value="comedy">Comedy</option>
+            <option value="crime">Crime/Gangster</option>
+            <option value="drama">Drama</option>
+            <option value="epic">Epics/Historical</option>
+            <option value="horror">Horror</option>
+            <option value="musicals">Musicals/Dance</option>
+            <option value="sc-fi">Sci-Fi</option>
+            <option value="war">War</option>
+            <option value="western">Westerns</option></select>
+
+        </div>
+        <section>
+            <div class="container">
+                <div *ngFor="let movie of movies.results | slice:0:21">
+                    <a routerLink="/detail/{{movie.id}}">
+                        <img src="https://image.tmdb.org/t/p/w500/{{movie.poster_path}}" alt="poster" max-width="200px" min-height="150px" class="img img-responsive " />
+                        <div class="movie-list-description">
+                            <span> <span *ngIf="movie.first_air_date">{{movie.first_air_date | date: 'y'}}</span> {{ movie.release_date | date: "y"}} | votes: {{movie.vote_count}}</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
