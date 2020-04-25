@@ -11,27 +11,18 @@ import { Action } from 'rxjs/internal/scheduler/Action';
   providers: [ MovieService ]
 })
 
-
-
 export class SearchCriteriaComponent implements OnInit {
   searchTerms = new Subject<string>();
   movies;
-  genre;
   release_date;
   routTo: string;
-  length = null;
-  vegan = null;
-  dairyFree = null;
-  textSearch = null;
+  spoken_languages: any;
+  genre;
 
-  userSearch = {
-    calories: this.length,
-    vegan: this.vegan,
-    dairyFree: this.dairyFree,
-    textSearch: this.textSearch
-  };
 
   constructor( private movieService: MovieService, public route: ActivatedRoute) {
+
+    
     
     this.movieService.search(this.searchTerms).subscribe(data => {
         this.movies = data;
@@ -40,20 +31,24 @@ export class SearchCriteriaComponent implements OnInit {
         () => console.log(this.movies)
     );
 
-    // this.movieService.search(this.searchTerms).subscribe(data => {
-    //   this.genre = data;
-    // },
-    // err => console.log(err),
-    // () => console.log(this.genre)
-    // );
+    this.movieService.search(this.searchTerms).subscribe(data => {
+    this.spoken_languages = data;
+    },
+    err => console.log(err),
+    () => console.log(this.spoken_languages)
+    );
 
-    // this.movieService.search(this.searchTerms).subscribe(data => {
-    //   this.release_date = data;
-    // },
-    // err => console.log(err),
-    // () => console.log(this.release_date)
-    // );
+    this.movieService.search(this.searchTerms).subscribe(data => {
+     this.release_date = data;
+    },
+    err => console.log(err),
+    () => console.log(this.release_date));
   
+    this.movieService.search(this.searchTerms).subscribe(data => {
+      this.genre = data;
+     },
+     err => console.log(err),
+     () => console.log(this.genre));
   }
 
   getMovies() {
@@ -116,4 +111,3 @@ export class SearchCriteriaComponent implements OnInit {
     });
   }
   }
-
