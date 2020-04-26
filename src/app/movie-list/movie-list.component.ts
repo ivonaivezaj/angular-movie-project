@@ -47,7 +47,6 @@ export class MovieListComponent implements OnInit {
 
   addWatchList = (movie) => {
     movie.favorite = !movie.favorite;
-    //  const list.movies =[]
     this.movieService.updateMovieList(this.list);
   }
 
