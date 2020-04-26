@@ -12,13 +12,3 @@
     </div>
   </div>
 </div>
-<div class="page" *ngIf="movie">
-  <a name="arrows" class="arrows" [routerLink]="['/home', movie.page - 1]" *ngIf="movie && movie.showArrow">
-    <i class="material-icons">keyboard_arrow_left</i>
-  </a>
-  <p>{{movie.page}}</p>
-  <a class="arrows" (click)="scrollUp()" [routerLink]="['/home', movie.page + 1]">
-    <i class="material-icons">keyboard_arrow_right</i>
-  </a>
-</div>
-<p class="errorMsg">{{ errorMessage }}</p>
