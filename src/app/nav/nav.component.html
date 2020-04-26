@@ -3,13 +3,21 @@
     <a class="navbar-logo" (click)="onClick()" routerLink="\" target="_parent">MOVIES</a>
     <div class="collapse navbar-collapse" id="navbarText">
       <div class="filters-container">
-        <div class="filter-buttons">
-          <button id="filterbtn" type="button" (click)="onClick()" [routerLink]="['/now-playing']">NOW
-            PLAYING</button>
-          <button id="filterbtn" type="button" (click)="onClick()" [routerLink]="['/popular']">POPULAR</button>
-          <button id="filterbtn" type="button" (click)="onClick()" [routerLink]="['/top-rated-list']">TOP
-            RATED</button>
-        </div>
+        <ul class="filter-buttons">
+          <li>
+            <a id="filterbtn" type="button" (click)="onClick()" [routerLink]="['/now-playing']">NOW
+              PLAYING</a>
+          </li>
+          <li>
+            <a id="filterbtn" type="button" (click)="onClick()" [routerLink]="['/popular']">POPULAR</a>
+
+          </li>
+          <li>
+            <a id="filterbtn" type="button" (click)="onClick()" [routerLink]="['/top-rated-list']">TOP
+              RATED</a>
+          </li>
+
+        </ul>
       </div>
     </div>
     <div class="nav-item">

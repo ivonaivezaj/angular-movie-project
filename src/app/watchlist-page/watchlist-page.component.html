@@ -1,10 +1,7 @@
 <div class="logo">WATCH LIST</div>
 <div class="moviesDiv">
   <div *ngFor="let movie of list" class="movieDiv">
-    <p class="voteAverage">
-      Rating:
-      {{movie.vote_average}}
-    </p>
+
     <button class="" (click)="removeTask(movie)">Remove from Watchlist</button>
     <div class="deleteMovies">
       <i id='delete' (click)="removeTask(movie)" class="fas fa-times"></i>
@@ -14,6 +11,9 @@
     <div class="textDiv">
       <a [routerLink]="['/movie-detail', movie.id]" class="movieTitle">{{ movie.title }}</a>
     </div>
-    <span class="voteAverage"><i id="starIcon" class="material-icons">star</i>{{movie.vote_average}}</span>
+    <p class="voteAverage">
+      Rating:
+      {{movie.vote_average}}
+    </p>
   </div>
 </div>
