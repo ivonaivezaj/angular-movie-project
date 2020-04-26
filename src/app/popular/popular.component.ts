@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MovieService } from '../movies.service';
-import { Location } from '@angular/common';
-import { LocalStorageService } from '../local-storage.service'
 
 
 interface Movies {
@@ -31,11 +29,11 @@ interface movieServiceData {
 }
 
 @Component({
-  selector: 'app-movie-list',
-  templateUrl: './movie-list.component.html',
-  styleUrls: ['./movie-list.component.css']
+  selector: 'app-popular',
+  templateUrl: './popular.component.html',
+  styleUrls: ['./popular.component.css']
 })
-export class MovieListComponent implements OnInit {
+export class PopularComponent implements OnInit {
   list: Movies[];
   movie: any;
   errorMessage: string;
@@ -43,8 +41,12 @@ export class MovieListComponent implements OnInit {
   red: boolean = true;
   favorite: boolean;
 
-  constructor(private movieService: MovieService, public route: ActivatedRoute) { }
+  main: boolean = false;
+  movieString: string;
+  mainfilter: boolean = false;
 
+
+  constructor(private movieService: MovieService, private route: ActivatedRoute) { }
   addWatchList = (movie) => {
     movie.favorite = !movie.favorite;
     //  const list.movies =[]
@@ -53,14 +55,13 @@ export class MovieListComponent implements OnInit {
 
   scrollUp = () => {
     window.scroll(0, 0);
-
   }
 
   ngOnInit() {
     this.movieService.movieList.subscribe(list => this.list = list);
 
     this.route.params.subscribe(params => {
-      this.movieService.getMoviePage(params.page).subscribe((data: movieServiceData) => {
+      this.movieService.getPopularMovies(params.page).subscribe((data: movieServiceData) => {
         this.movie = data;
         if (data.page === 1) {
           data.showArrow = false;

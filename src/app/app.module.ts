@@ -11,6 +11,11 @@ import { NavComponent } from './nav/nav.component';
 import { RouterModule } from '@angular/router';
 import { StorageServiceModule } from 'ngx-webstorage-service';
 import { LocalStorageService } from './local-storage.service';
+import { TopRatedListComponent } from './top-rated-list/top-rated-list.component';
+import { GenreListComponent } from './genre-list/genre-list.component';
+import { MovieDetailComponent } from './movie-detail/movie-detail.component';
+import { PopularComponent } from './popular/popular.component';
+import { NowPlayingComponent } from './now-playing/now-playing.component';
 
 
 @NgModule({
@@ -20,6 +25,11 @@ import { LocalStorageService } from './local-storage.service';
     MovieListComponent,
     WatchlistPageComponent,
     NavComponent,
+    TopRatedListComponent,
+    GenreListComponent,
+    MovieDetailComponent,
+    PopularComponent,
+    NowPlayingComponent,
 
   ],
   imports: [

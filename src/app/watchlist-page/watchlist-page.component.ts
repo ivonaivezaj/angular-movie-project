@@ -12,23 +12,30 @@ export class WatchlistPageComponent implements OnInit {
   favorites = [];
   movies = [];
 
+  title = 'movie-app';
+  red: boolean;
+  list: any[];
+  original: any[];
+
   constructor(private router: Router,
     private localStorageService: LocalStorageService,
     private movieService: MovieService) { }
 
-    //compile list of movies from local storage
-  getMyList() {
-    this.favorites = this.localStorageService.getFromLocalStorage();
 
-    //iterate through the array and push each value at index is to movies[]
-    this.favorites.forEach(id => {
-      this.movieService.getMovie(id).subscribe(data => {
-        this.movies.push(data);
-        },
-        err => console.log(err),
-        () => console.log(this.movies)
-      );
+
+  ngOnInit() {
+    this.movieService.movieList.subscribe(list => {
+      this.original = list;
+      this.list = list.filter(movie => movie.favorite);
     });
+  }
+
+
+  removeTask = (movie) => {
+    this.red = !this.red;
+    movie.favorite = false;
+    //  const list.movies =[]
+    this.movieService.updateMovieList(this.original);
   }
 
   removeFromFavorites(id: number) {
@@ -39,9 +46,5 @@ export class WatchlistPageComponent implements OnInit {
   clearFavorites() {
     this.localStorageService.clearFavorites();
   }
-
-  ngOnInit(): void {
-    this.getMyList();
-  }
-  }
+}
 

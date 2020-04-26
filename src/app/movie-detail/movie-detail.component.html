@@ -1,0 +1,16 @@
+<app-nav></app-nav>
+
+<div *ngIf="movie" class="mainDiv">
+  <div class="text">
+    <h1>{{movie.title}}</h1>
+    <p class="info">
+      <i id="calendar" class="material-icons">date_range</i>{{movie.release_date}}
+      <i id="timer" class="material-icons">timer</i> {{movie.runtime}} min
+      <i id="star" class="material-icons">star</i>{{movie.vote_average}}
+      <i id="theaters" class="material-icons">theaters</i>{{movie.genres[0].name}}</p>
+    <p class="tagline">{{movie.tagline}}</p>
+    <div class="overview">{{movie.overview}}</div>
+    <a class="homepage" href="{{ movie.homepage }}"><i class="material-icons">more_horiz</i></a>
+  </div>
+  <img src="https://image.tmdb.org/t/p/w500/{{ movie.poster_path }}" class="img-fluid" alt="{{ movie.title }}">
+</div>

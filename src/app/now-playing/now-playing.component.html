@@ -1,3 +1,4 @@
+<div class="logo">Now Playing</div>
 <div class="moviesDiv" *ngIf="movie">
   <div class="movieDiv" *ngFor="let movie of list">
     <p class="voteAverage">
@@ -5,6 +6,7 @@
       {{movie.vote_average}}
     </p>
     <button class="" (click)="addWatchList(movie)">Add to Watchlist</button>
+
     <div class="imageDiv"><img src="https://image.tmdb.org/t/p/w200/{{ movie.poster_path }}" class="img-fluid"
         alt="{{ movie.title }}"></div>
     <div class="textDiv">
@@ -12,3 +14,14 @@
     </div>
   </div>
 </div>
+<div class="page" *ngIf="movie">
+  <a name="arrows" class="arrows" (click)="scrollUp()" [routerLink]="['/now-playing-list', movie.page - 1]"
+    *ngIf="movie.showArrow">
+    <i class="material-icons">keyboard_arrow_left</i>
+  </a>
+  <p>{{movie.page}}</p>
+  <a class="arrows" (click)="scrollUp()" [routerLink]="['/now-playing-list', movie.page + 1]">
+    <i class="material-icons">keyboard_arrow_right</i>
+  </a>
+</div>
+<p class="errorMsg">{{ errorMessage }}</p>

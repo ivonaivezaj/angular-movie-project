@@ -1,17 +1,32 @@
-<nav class="navbar-nav" role="navigation">
-    <div class="navbar-inner">
-    <div class="container ">
-        <div class="navbar-header">
-        <a class="navbar-header" href="" selected>MOVIES</a>
+<nav class="navbar-span">
+  <div class="section1">
+    <a class="navbar-logo" (click)="onClick()" routerLink="\" target="_parent">MOVIES</a>
+    <div class="collapse navbar-collapse" id="navbarText">
+      <div class="filters-container">
+        <div class="filter-buttons">
+          <button id="filterbtn" type="button" (click)="onClick()" [routerLink]="['/now-playing']">NOW
+            PLAYING</button>
+          <button id="filterbtn" type="button" (click)="onClick()" [routerLink]="['/popular']">POPULAR</button>
+          <button id="filterbtn" type="button" (click)="onClick()" [routerLink]="['/top-rated-list']">TOP
+            RATED</button>
         </div>
-    
-    <div class="nav-bar links" id="links">
-        <ul class="nav navbar-nav">
-            <li><a class="navbar-text" href="upcoming">Upcoming</a></li>
-            <li><a class="navbar-text" href="popular">Popular</a></li>
-            <li><a class="navbar-text" href="favorites">Watch List</a></li>
-        </ul>
+      </div>
     </div>
+    <div class="nav-item">
+      <select class="genreFilter" (change)="onChange($event)" [(ngModel)]="genreId">
+        <option value="0" disabled>GENRES</option>
+        <option name="genres" *ngFor="let genre of genreList" [value]="genre.id">{{genre.name}}</option>
+      </select>
     </div>
-    </div>
+
+    <form name="userIcons" id="userIcons">
+      <span *ngIf="main"><input name="search" type="text" placeholder="Search" [(ngModel)]="movieString"
+          (change)='searchMovie()' /></span>
+      <span *ngIf="!main"></span>
+      <button id="ui" type="toggle" (click)="toggleSearchInput()">Search</button>
+      <a id="ui" routerLink="\" target="_parent">Home</a>
+      <button id="ui" routerLink='/watchlist-page'>WatchList</button>
+    </form>
+    <form *ngIf="!main"></form>
+  </div>
 </nav>

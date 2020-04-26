@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MovieService } from '../movies.service';
-import { Location } from '@angular/common';
-import { LocalStorageService } from '../local-storage.service'
-
 
 interface Movies {
   poster_path: string;
@@ -22,7 +19,7 @@ interface Movies {
   favorite: boolean;
 }
 
-interface movieServiceData {
+interface ApiData {
   page: number;
   results: Movies[];
   total_results: number;
@@ -31,11 +28,11 @@ interface movieServiceData {
 }
 
 @Component({
-  selector: 'app-movie-list',
-  templateUrl: './movie-list.component.html',
-  styleUrls: ['./movie-list.component.css']
+  selector: 'top-rated-list',
+  templateUrl: './top-rated-list.component.html',
+  styleUrls: ['./top-rated-list.component.css']
 })
-export class MovieListComponent implements OnInit {
+export class TopRatedListComponent implements OnInit {
   list: Movies[];
   movie: any;
   errorMessage: string;
@@ -43,24 +40,28 @@ export class MovieListComponent implements OnInit {
   red: boolean = true;
   favorite: boolean;
 
-  constructor(private movieService: MovieService, public route: ActivatedRoute) { }
+  main: boolean = false;
+  movieString: string;
+
+  mainfilter: boolean = false;
+  search_result: [];
+
+  constructor(private movieService: MovieService, private route: ActivatedRoute) { }
 
   addWatchList = (movie) => {
     movie.favorite = !movie.favorite;
-    //  const list.movies =[]
     this.movieService.updateMovieList(this.list);
   }
 
   scrollUp = () => {
     window.scroll(0, 0);
-
   }
 
   ngOnInit() {
     this.movieService.movieList.subscribe(list => this.list = list);
 
     this.route.params.subscribe(params => {
-      this.movieService.getMoviePage(params.page).subscribe((data: movieServiceData) => {
+      this.movieService.getTopRatedMovies(params.page).subscribe((data: ApiData) => {
         this.movie = data;
         if (data.page === 1) {
           data.showArrow = false;
@@ -68,6 +69,8 @@ export class MovieListComponent implements OnInit {
           data.showArrow = true;
         }
         this.movieService.updateMovieList(data.results);
+        console.log("molly top rated component onchange");
+
       });
     }),
 

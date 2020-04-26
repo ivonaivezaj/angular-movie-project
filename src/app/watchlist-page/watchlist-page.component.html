@@ -1,18 +1,19 @@
-<main>
-    <div *ngIf="movies">
-        <h4 class="fav"> Favorites <span (click)="clearFavorites()" class="btn clear-all">clear <span
-            class="remove"></span></span></h4>
-        <section>
-            <div *ngFor="let movie of movies"
-                class="movielist">
-                    <a routerLink="/detail/{{movie.id}}">
-                    <img src="https://image.tmdb.org/t/p/w500/{{movie.poster_path}}" alt="poster" class="image" />
-                    </a>
-                    <div class="movie-list-description">
-                        <span> released: {{ movie.release_date | date: "y"}} | votes: {{movie.vote_count}}</span>  
-                        <span (click) ="removeFromFavorites(movie.id)" class="remove-x"> X</span>
-                    </div>
-            </div>
-        </section>
+<div class="logo">WATCH LIST</div>
+<div class="moviesDiv">
+  <div *ngFor="let movie of list" class="movieDiv">
+    <p class="voteAverage">
+      Rating:
+      {{movie.vote_average}}
+    </p>
+    <button class="" (click)="removeTask(movie)">Remove from Watchlist</button>
+    <div class="deleteMovies">
+      <i id='delete' (click)="removeTask(movie)" class="fas fa-times"></i>
     </div>
-</main>
+    <div class="imageDiv"><img src="https://image.tmdb.org/t/p/w200/{{ movie.poster_path }}" class="img-fluid"
+        alt="{{ movie.title }}"></div>
+    <div class="textDiv">
+      <a [routerLink]="['/movie-detail', movie.id]" class="movieTitle">{{ movie.title }}</a>
+    </div>
+    <span class="voteAverage"><i id="starIcon" class="material-icons">star</i>{{movie.vote_average}}</span>
+  </div>
+</div>

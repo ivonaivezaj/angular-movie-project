@@ -1,45 +1,85 @@
+<div class="search-bar-container">
+  <div class="searchtitle">MOVIE SEARCH</div>
 
-        <div class="search-bar-container">
+  <!-- <form method="get" action="/Search">
+    <select class="genreFilter" (change)="onChange($event)" [(ngModel)]="genreId">
+      <label>GENRES:</label>
+      <option value="0" disabled>GENRES</option>
+      <option name="genres" *ngFor="let genre of genreList" [value]="genre.id">{{genre.name}}</option>
+    </select> -->
 
-          <div class="searchtitle">MOVIE SEARCH</div>
-          
-          <form method="get" action="/Search">
-            <input type="text"  (keyup)="searchTerms.next($event.target.value)" class="form-control search-box" placeholder="SEARCH">
+  <span *ngIf="main"><input name="search" type="text" placeholder="Search" [(ngModel)]="movieString"
+      (change)='searchMovie()' />
+  </span>
 
 
-            <div method="get" action="/Search">
-              <input [(ngModel)]="release_date" type="text" name="filmYear" placeholder="YEAR" class="sidebar-search-year">
+  <input type="text" class="form-control search-box" placeholder="SEARCH">
+  <!-- 
+
+    <input type="text" name="filmYear" placeholder="YEAR" class="sidebar-search-year">
 
 
-            <div method="get" action="/Search">
-                <input [(ngModel)]="spoken_languages" type="text" name="language" placeholder="LANGUAGE" class="spoken-languages"> 
-            </div>
+    <input type="text" name="language" placeholder="LANGUAGE" class="spoken-languages">
 
-          <label [(ngModel)]="genre" for="Genre">Genre:</label>
+    <label for="Genre">Genre:</label>
 
-          <select id="genre">
-            <option id="genre" selected="selected">Any</option>
-            <option value="action">Action</option>
-            <option value="comedy">Comedy</option>
-            <option value="crime">Crime/Gangster</option>
-            <option value="drama">Drama</option>
-            <option value="family">Family</option>
-            <option value="horror">Horror</option>
-            <option value="musicals">Musicals</option>
-            <option value="sc-fi">Science Fiction</option>
-            <option value="western">Westerns</option></select>
-        
+    <select class="genreFilter" (change)="onChange($event)" [(ngModel)]="genreId">
+      <option class="genre" selected="selected">Any</option>
+      <option value="action">Action</option>
+      <option value="comedy">Comedy</option>
+      <option value="crime">Crime/Gangster</option>
+      <option value="drama">Drama</option>
+      <option value="family">Family</option>
+      <option value="horror">Horror</option>
+      <option value="musicals">Musicals</option>
+      <option value="sc-fi">Science Fiction</option>
+      <option value="western">Westerns</option>
+    </select> -->
+
+  <button (click)="onClick()">
+    Search
+  </button>
+
+  <!-- </form> -->
+  <!-- 
+  <div class="logo">Top Rated</div>
+  <div class="moviesDiv" *ngIf="movie">
+    <div class="movieDiv" *ngFor="let movie of list">
+      <p class="voteAverage"><i id="starIcon" class="material-icons">star</i>{{movie.vote_average}}</p>
+      <!-- <i id="heartIcon" class="material-icons red" (click)=" addWatchList(movie)"
+        [ngClass]="{'red': movie.favorite===true}">favorite_border</i> -->
+  <!-- <div class="imageDiv"><img src="https://image.tmdb.org/t/p/w200/{{ movie.poster_path }}" class="img-fluid"
+          alt="{{ movie.title }}"></div>
+      <div class="textDiv">
+        <a [routerLink]="['/movie-detail', movie.id]" class="movieTitle">{{ movie.title }}</a>
+      </div>
+    </div>
+  </div> --> -->
+  <!-- <div class="page" *ngIf="movie">
+    <a name="arrows" class="arrows" (click)="scrollUp()" [routerLink]="['/top-rated-list', movie.page - 1]"
+      *ngIf="movie.showArrow">
+      <i class="material-icons">keyboard_arrow_left</i>
+    </a>
+    <p>{{movie.page}}</p>
+    <a class="arrows" (click)="scrollUp()" [routerLink]="['/top-rated-list', movie.page + 1]">
+      <i class="material-icons">keyboard_arrow_right</i>
+    </a>
+  </div> -->
+  <!-- <p class="errorMsg">{{ errorMessage }}</p> -->
+
+
+
+  <!-- <div class="container">
+    <div *ngFor="let movie of movies.results; i = index">
+      <a routerLink="/detail/{{movie.id}}">
+        <img src="https://image.tmdb.org/t/p/w500/{{movie.poster_path}}" alt="poster" max-width="200px"
+          min-height="150px" class="img img-responsive " />
+        <div class="movie-list-description">
+          <span> <span *ngIf="movie.original_language">{{movie.original_language}}</span> {{ movie.release_date}}
+            ,{{movie.genre}}</span>
+          <h4>{{movie.title}}</h4>
+          <p>{{movie.release_date}}</p>
         </div>
-          </form>
-            <div class="container">
-                <div *ngFor="let movie of movies.results | slice:0:21">
-                    <a routerLink="/detail/{{movie.id}}">
-                        <img src="https://image.tmdb.org/t/p/w500/{{movie.poster_path}}" alt="poster" max-width="200px" min-height="150px" class="img img-responsive " />
-                        <div class="movie-list-description">
-                            <span> <span *ngIf="movie.original_language">{{movie.original_language}}</span> {{ movie.release_date}} ,{{movie.genre}}</span>
-                            <h4>{{movie.title}}</h4>
-                            <p>{{movie.release_date}}</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
+      </a>
+    </div>
+  </div> -->
